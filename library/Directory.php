@@ -30,7 +30,7 @@ class Directory extends DirectoryAbstract
 
     public function file(string $name): File
     {
-        if (!preg_match("/^([0-9a-f]+)\.[a-zA-Z0-9]+$/", $name, $matches)) {
+        if (!preg_match("/^([0-9a-f]+)(?:\.[a-zA-Z0-9]+)?$/", $name, $matches)) {
             throw new Exception('your file name is not a valid hash');
         }
         if (0 != strlen($matches[1]) % 2) {
@@ -54,7 +54,7 @@ class Directory extends DirectoryAbstract
         }
         $md5 = $file->md5();
 
-        return $this->file("{$md5}.{$extension}");
+        return $this->file("{$md5}".($extension ? ".{$extension}" : ''));
     }
 
     public function putFile(File $file): File
