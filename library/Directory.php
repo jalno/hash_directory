@@ -97,17 +97,22 @@ class Directory extends DirectoryAbstract
         throw new Exception('Cannot access hash directories');
     }
 
-    public function serialize(): string
+    /**
+     * @return array{root:\packages\base\IO\Directory,levels:int}
+     */
+    public function __serialize(): array
     {
-        return serialize([
+        return [
             'root' => $this->root,
             'levels' => $this->levels,
-        ]);
+        ];
     }
 
-    public function unserialize($data)
+    /**
+     * @param array{root:\packages\base\IO\Directory,levels:int} $data
+     */
+    public function __unserialize(array $data): void
     {
-        $data = unserialize($data);
         $this->root = $data['root'];
         $this->levels = $data['levels'];
     }
