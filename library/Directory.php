@@ -48,7 +48,7 @@ class Directory extends DirectoryAbstract
     {
         $extension = $file->getExtension();
         if (!method_exists($file, 'md5')) {
-            $tmp = new File\Tmp();
+            $tmp = new File\TMP();
             $file->copyTo($tmp);
             $file = $tmp;
         }
