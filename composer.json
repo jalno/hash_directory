@@ -9,7 +9,14 @@
     },
     "autoload": {
         "psr-4": {
-            "packages\\hash_directory\\": ["library/"]
+            "packages\\hash_directory\\": [
+                "library/"
+            ]
+        }
+    },
+    "extra": {
+        "jalno": {
+            "manifest": "package.json"
         }
     }
 }
